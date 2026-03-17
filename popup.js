@@ -1,10 +1,27 @@
-document.getElementById('toggleSwitch').addEventListener('change', async (event) => {
+document.addEventListener('DOMContentLoaded', async () => {
 	const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+	const tabId = tab.id.toString(); // Storage keys must be strings
+
+	// Check storage for this tab's state and set the toggle accordingly
+	chrome.storage.local.get([tabId], (result) => {
+		if (result[tabId]) {
+			document.getElementById('toggleSwitch').checked = true;
+		}
+	});
+});
+
+document.getElementById('toggleSwitch').addEventListener('change', async (event) => {
+	const isActive = event.target.checked;
+	const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+	const tabId = tab.id.toString();
+
+	// Save state to storage.
+	chrome.storage.local.set({ [tabId]: isActive });
 
 	chrome.scripting.executeScript({
 		target: { tabId: tab.id },
 		function: toggleXRay,
-		args: [event.target.checked]
+		args: [isActive]
 	});
 });
 
