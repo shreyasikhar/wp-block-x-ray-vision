@@ -4,6 +4,11 @@ Visualize the block structure of WordPress sites that use **block-based themes**
 
 When enabled, the extension highlights elements whose classes match `wp-block-*` and shows a small label on hover (e.g. `wp-block-group`, `wp-block-columns`) so you can quickly understand how a page is composed.
 
+
+https://github.com/user-attachments/assets/dd159293-2d4b-4e29-8818-d21d12e0de36
+
+
+
 ## Features
 
 - **X‑Ray mode toggle** from the extension popup
