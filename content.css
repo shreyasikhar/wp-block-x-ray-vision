@@ -12,8 +12,18 @@
 	background-color: rgba(34, 113, 177, 0.05);
 }
 
+/**
+ * If a child block is hovered, force this parent back to dashed blue.
+ * This prevents multiple "solid" boxes from overlapping.
+ */
+.wp-xray-active [class*="wp-block-"]:has([class*="wp-block-"]:hover) {
+	outline: 1px dashed rgba(56, 88, 233, 0.4) !important;
+	background-color: transparent !important;
+}
+
 .wp-xray-active [class*="wp-block-"]::before {
   /* This pulls the "Group" or "Columns" name we generated in JS */
+	display: none;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -31,21 +41,24 @@
 }
 
 .wp-xray-active [class*="wp-block-"]:hover::before {
+	display: block;
 	content: "Block: " attr(data-block-name);
 }
 
-/* Optional: Color code the labels based on the block type */
-.wp-xray-active [data-block-name="Group"]::before { background: #673ab7; }
-.wp-xray-active [data-block-name="Columns"]::before { background: #009688; }
-.wp-xray-active [data-block-name="Image"]::before { background: #ff9800; }
+/**
+ * This selector targets any block that has a child block being hovered.
+ * It hides the label of the parent block when a child is hovered.
+ * This way, only the most specific (innermost) block's label is shown on hover.
+ */
+.wp-xray-active [class*="wp-block-"]:has([class*="wp-block-"]:hover)::before {
+	display: none !important;
+}
+
+.wp-xray-active [class*="wp-block-"]:hover {
+	outline: 2px solid #ff5722 !important;
+	background-color: rgba(56, 88, 233, 0.05);
+}
 
 .wp-xray-active [class*="wp-block-"]:hover::before {
 	opacity: 1;
-}
-
-/* Special styling for nested containers to show hierarchy */
-.wp-xray-active .wp-block-group,
-.wp-xray-active .wp-block-columns,
-.wp-xray-active .wp-block-column {
-	outline-color: #46b450 !important;
 }

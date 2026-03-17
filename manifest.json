@@ -1,8 +1,8 @@
 {
 	"manifest_version": 3,
 	"name": "WP Block X-Ray Vision",
-	"version": "1.0",
-	"description": "Visualize the block structure of any WordPress site.",
+	"version": "1.0.0",
+	"description": "Visualize the block structure of any WordPress site that uses block based themes. It identifies and labels blocks on hover, making it easier to understand the layout and structure of WordPress block themes.",
 	"permissions": ["activeTab", "scripting"],
 	"icons": {
 		"16": "icon.png",
