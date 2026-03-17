@@ -1,38 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<style>
-		body {
-			margin: 6px;
-			width: 250px;
-			padding: 5px 10px;
-			font-family: sans-serif;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			flex-direction: column;
-			border: 2px solid #3858e9;
-			border-radius: 4px;
-		}
-
-		button {
-			padding: 10px;
-			cursor: pointer;
-			background: #3858e9;
-			color: #fff;
-			border: none;
-			border-radius: 4px;
-		}
-
-		button:hover {
-			background: #4664eb;
-		}
-	</style>
+	<link rel="stylesheet" href="popup.css">
 </head>
 <body>
 	<h2>WP Block X-Ray Vision</h2>
-	<button id="toggleBtn">Toggle X-Ray Mode</button>
-	<p style="font-size: 12px; color: #555; line-height: 1.4; padding-top: 10px;"><strong>Please Note:</strong> This tool is for WordPress block themes only.</p>
+	<label class="switch">
+		<input type="checkbox" id="toggleSwitch">
+		<span class="toggle"></span>
+	</label>
+	<p class="wp-x-ray-note">Use the above toggle to enable or disable X-Ray mode.</p>
+	<p class="wp-x-ray-note"><strong>Please Note:</strong> This tool is for WordPress block themes only.</p>
 	<script src="popup.js"></script>
 </body>
 </html>

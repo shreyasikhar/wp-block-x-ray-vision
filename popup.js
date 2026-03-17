@@ -1,16 +1,17 @@
-document.getElementById('toggleBtn').addEventListener('click', async () => {
+document.getElementById('toggleSwitch').addEventListener('change', async (event) => {
 	const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
 	chrome.scripting.executeScript({
 		target: { tabId: tab.id },
-		function: toggleXRay
+		function: toggleXRay,
+		args: [event.target.checked]
 	});
 });
 
-function toggleXRay() {
-	const isActive = document.body.classList.toggle('wp-xray-active');
+function toggleXRay(isActive) {
 
 	if (isActive) {
+		document.body.classList.add('wp-xray-active');
 		// Find every element that has a WordPress block class.
 		const blocks = document.querySelectorAll('[class*="wp-block-"]');
 
@@ -25,5 +26,7 @@ function toggleXRay() {
 				block.setAttribute('data-block-name', blockClass);
 			}
 		});
+	} else {
+		document.body.classList.remove('wp-xray-active');
 	}
 }
