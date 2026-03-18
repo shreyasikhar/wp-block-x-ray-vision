@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', async () => {
 	const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 	const tabId = tab.id.toString(); // Storage keys must be strings
+	const toggleSwitch = document.getElementById('toggleSwitch');
 
-	// Check storage for this tab's state and set the toggle accordingly
+	// Restore toggle UI state for this tab and re-apply X-Ray mode after page reloads.
 	chrome.storage.local.get([tabId], (result) => {
-		if (result[tabId]) {
-			document.getElementById('toggleSwitch').checked = true;
-		}
+		const isActive = Boolean(result[tabId]);
+		toggleSwitch.checked = isActive;
+		applyXRayState(tab.id, isActive);
 	});
 });
 
@@ -18,12 +19,17 @@ document.getElementById('toggleSwitch').addEventListener('change', async (event)
 	// Save state to storage.
 	chrome.storage.local.set({ [tabId]: isActive });
 
+	applyXRayState(tab.id, isActive);
+});
+
+
+function applyXRayState(tabId, isActive) {
 	chrome.scripting.executeScript({
-		target: { tabId: tab.id },
+		target: { tabId },
 		function: toggleXRay,
 		args: [isActive]
 	});
-});
+}
 
 function toggleXRay(isActive) {
 
