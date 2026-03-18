@@ -3,6 +3,7 @@
 	outline: 2px dashed #3858e9 !important;
 	outline-offset: -2px;
 	position: relative;
+	overflow: visible !important;
 	transition: all 0.2s ease-in-out;
 }
 
@@ -47,10 +48,10 @@
 
 /**
  * This selector targets any block that has a child block being hovered.
- * It hides the label of the parent block when a child is hovered.
+ * It hides the label of the parent block when a child is hovered, EXCEPT when that child is an image.
  * This way, only the most specific (innermost) block's label is shown on hover.
  */
-.wp-xray-active [class*="wp-block-"]:has([class*="wp-block-"]:hover)::before {
+.wp-xray-active [class*="wp-block-"]:has([class*="wp-block-"]:hover:not(img))::before {
 	display: none !important;
 }
 
