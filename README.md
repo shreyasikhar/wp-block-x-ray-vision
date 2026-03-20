@@ -8,7 +8,6 @@ When enabled, the extension highlights elements whose classes match `wp-block-*`
 https://github.com/user-attachments/assets/dd159293-2d4b-4e29-8818-d21d12e0de36
 
 
-
 ## Features
 
 - **X‑Ray mode toggle** from the extension popup
@@ -76,6 +75,6 @@ Defined in `manifest.json` (Manifest V3):
 - `content.css` — X‑Ray styling + hover labels
 - `icon.png` — extension icon
 
-<!-- ## License
+## License
 
-Add a license if you plan to publish/distribute this extension (MIT is a common choice). -->
+This project is licensed under the **MIT License**. See [`LICENSE`](LICENSE) for details.
